@@ -1,0 +1,48 @@
+﻿<Window x:Class="DataTracker.Views.LinkObject"
+        Name="LinkObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:viewModel="clr-namespace:DataTracker.ViewModel"
+        mc:Ignorable="d" 
+        Title="Claim Objects" Height="500" Width="900" FontSize="18" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:LinkObjectViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label>Select Owner</Label>
+            <ComboBox ItemsSource="{Binding DeveloperOptions}" SelectedItem="{Binding Path=SelectedDeveloper, Mode=TwoWay}" DisplayMemberPath="FirstLastName" SelectedValuePath="LoginName" ></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label>Label</Label>
+            <ComboBox Width="200" ItemsSource="{Binding Labels}" SelectedItem="{Binding SelectedLabel}" DisplayMemberPath="Name" SelectedValuePath="Id" ></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+            <Label VerticalAlignment="Center">Release Date</Label>
+            <DatePicker VerticalAlignment="Center" HorizontalAlignment="Right" SelectedDate="{Binding ReleaseDate}" />
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding DatabaseObjects}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Database" Width="*" Binding="{Binding DatabaseName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Schema" Width="*" Binding="{Binding ObjectSchema}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ObjectName" Width="*" Binding="{Binding ObjectName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="2" Grid.Column="0" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding CancelCommand}"></Button>
+        <Button Grid.Row="2" Grid.Column="2" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding LinkObjectsCommand}"></Button>
+    </Grid>
+
+</Window>

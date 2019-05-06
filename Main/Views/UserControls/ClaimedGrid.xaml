@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="DataTracker.Views.UserControls.ClaimedGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:DataTracker.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interactivity="http://prismlibrary.com/"
+             xmlns:local="clr-namespace:DataTracker.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="750">
+    <UserControl.DataContext>
+        <viewModel:ClaimedGridViewModel />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <CheckBox VerticalAlignment="Center" HorizontalAlignment="Right" Width="125" IsChecked="{Binding IsReleaseDateChecked}" Content="Release Date" Command="{Binding FilterChangedCommand}"/>
+            <DatePicker VerticalAlignment="Center" HorizontalAlignment="Right" SelectedDate="{Binding ReleaseDate}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding FilterChangedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" Width="150" IsChecked="{Binding IsShowConflicts}" Content="Conflicts At Top" Command="{Binding FilterChangedCommand}"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ClaimedRecords}" SelectedIndex="-1" CanUserAddRows="False" AutoGenerateColumns="False" Height="Auto" ColumnWidth="*" >
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Value="True" Binding="{Binding IsConflict}">
+                            <Setter Property="Background" Value="#65FF0000"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                        Value="True">
+                            <Setter Property="BorderThickness" Value="0" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="30">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type local:ClaimedGrid}},
+                                    Path=DataContext.DeleteCommand}"
+                                CommandParameter="{Binding}">
+                                <Image Source="/Images/trash-can.png" HorizontalAlignment="Center" Height="20" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Database" Width="125" Binding="{Binding ObjectDatabase}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Type" Width="125" Binding="{Binding ObjectType}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Schema" Width="125" Binding="{Binding ObjectSchema}"></DataGridTextColumn>
+                <DataGridTextColumn Header="ObjectName" Binding="{Binding ObjectName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Release Date" Width="125" Binding="{Binding ReleaseDate, StringFormat='{}{0:MM/dd/yyyy}'}"></DataGridTextColumn>
+                <DataGridTextColumn Header="User" Width="75" Binding="{Binding UserName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

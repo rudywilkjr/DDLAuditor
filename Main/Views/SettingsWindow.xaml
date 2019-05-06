@@ -1,0 +1,88 @@
+﻿<Window x:Class="DataTracker.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:DataTracker.Views"
+        xmlns:viewModel="clr-namespace:DataTracker.ViewModel"
+        mc:Ignorable="d"
+        Title="Settings" Height="250" Width="450" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:SettingsViewModel />
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Header="Labels">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Label Margin="10,0,0,0">Project Labels</Label>
+                        <ComboBox Width="100" ItemsSource="{Binding ProjectLabels}" SelectedItem="{Binding Label}" SelectedValue="{Binding Label}" DisplayMemberPath="Name" SelectedValuePath="Id" VerticalAlignment="Center" Height="26" Margin="8,0,0,0">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding RefreshCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ComboBox>
+                        <Button Content="New" Command="{Binding ClearLabelCommand}" Width="50" Margin="5,0,0,0" />
+                        <Button Content="Delete" Command="{Binding DeleteLabelCommand}" Width="50" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1">
+                        <Label Content="{Binding Message}" Foreground="Green" Margin="10,0,0,0"></Label>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" >
+                        <Label Content="Label Name " Margin="10,0,0,0"/>
+                        <TextBox Width="200" Text="{Binding Label.Name, Mode=TwoWay}" Margin="15,0,10,0" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                        <Label Margin="10,0,0,0">Release Date</Label>
+                        <DatePicker SelectedDate="{Binding Label.ReleaseDate}" Margin="13,0,0,0" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                        <Label Margin="10,0,0,0">Is Junk</Label>
+                        <CheckBox IsChecked="{Binding Label.IsJunk}" VerticalAlignment="Center" Margin="13,0,0,0"></CheckBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ignored Objects">
+                <DataGrid ItemsSource="{Binding IgnoredObjects}" CanUserAddRows="False" AutoGenerateColumns="False" Height="Auto" ColumnWidth="*">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="30">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Background="Transparent" BorderBrush="Transparent"
+                                Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type local:SettingsWindow}},
+                                    Path=DataContext.DeleteIgnoredObjectCommand}"
+                                CommandParameter="{Binding}">
+                                        <Image Source="/Images/trash-can.png" HorizontalAlignment="Center" Height="20" />
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="ObjectName" Width="2*" Binding="{Binding Name}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Developer" Width="1*" Binding="{Binding IgnoredByUser}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Time" Width="1*" Binding="{Binding IgnoredOnTime}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+        </TabControl>
+        <Button Grid.Row="1" Width="85" Content="Close" HorizontalAlignment="Left" Margin="10,0,0,0" Click="Close_Click"/>
+        <Button Grid.Row="1" Width="85" Content="Save" HorizontalAlignment="Right" Command="{Binding SaveLabelCommand}" Margin="0,0,10,0"/>
+    </Grid>
+</Window>

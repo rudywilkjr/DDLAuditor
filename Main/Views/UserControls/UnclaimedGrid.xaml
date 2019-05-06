@@ -1,0 +1,46 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:DataTracker.ViewModel"
+             xmlns:local="clr-namespace:DataTracker.Views.UserControls" x:Class="DataTracker.Views.UserControls.UnclaimedGrid"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="650">
+    <UserControl.DataContext>
+        <viewModel:UnclaimedGridViewModel />
+    </UserControl.DataContext>
+    <DataGrid ItemsSource="{Binding UnclaimedRecords}" SelectedIndex="-1" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ColumnWidth="*">
+        <DataGrid.CellStyle>
+            <Style TargetType="{x:Type DataGridCell}">
+                <Style.Triggers>
+                    <Trigger Property="IsSelected"
+						Value="True">
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </DataGrid.CellStyle>
+        <DataGrid.Columns>
+            <DataGridTemplateColumn Width="30">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding IsAssign, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="ObjectName" Binding="{Binding ObjectName}"/>
+            <DataGridTextColumn Header="Schema" Binding="{Binding ObjectSchema}"/>
+            <DataGridTextColumn Header="Database" Binding="{Binding DatabaseName}"/>
+            <DataGridTemplateColumn Header="Audit Log" Width="80">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Content="View" Background="Transparent" BorderBrush="Transparent" Foreground="Blue" Command="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                    AncestorType={x:Type local:UnclaimedGrid}},
+                                    Path=DataContext.GoToAuditLogCommand}" CommandParameter="{Binding}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

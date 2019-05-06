@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="DataTracker.Views.UserControls.ManualEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel="clr-namespace:DataTracker.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:interactivity="http://prismlibrary.com/"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="650" BorderBrush="LightGray" BorderThickness="1" UseLayoutRounding="True">
+    <UserControl.DataContext>
+        <viewModel:ManualEntryViewModel />
+    </UserControl.DataContext>
+    <Grid Background="#EBEBEB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label>Select Owner</Label>
+            <ComboBox ItemsSource="{Binding DeveloperOptions}" SelectedItem="{Binding SelectedDeveloper}" SelectedValue="{Binding SelectedDeveloper.DomainUserName}" DisplayMemberPath="FirstLastName" SelectedValuePath="DomainUserName" ></ComboBox>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding ActionMessage}" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="{Binding IsActionSomething, Converter={StaticResource BoolToHiddenConverter}}">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Background" Value="LightGreen" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsActionError}" Value="True">
+                            <Setter Property="Background" Value="#FFFF8686" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsActionError}" Value="False">
+                            <Setter Property="Background" Value="LightGreen" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <DatePicker Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" SelectedDate="{Binding ReleaseDate}" Margin="0,0,10,0" />
+        <ComboBox Grid.Row="0" ItemsSource="{Binding Labels}" SelectedItem="{Binding SelectedLabel}" DisplayMemberPath="Name" SelectedValuePath="Id" Grid.Column="2" Margin="10,0,0,0" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="90" MinHeight="24"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox ItemsSource="{Binding DatabaseOptions}" SelectedItem="{Binding Path=SelectedDatabase}" SelectedValue="{Binding Path=SelectedDatabase.DatabaseName}" DisplayMemberPath="DatabaseName" SelectedValuePath="DatabaseName" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding RefreshSchemasCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <ComboBox ItemsSource="{Binding ObjectSchemaOptions}" SelectedItem="{Binding Path=SelectedObjectSchema}" SelectedValue="{Binding Path=SelectedObjectSchema}" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding RefreshObjectsCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <ComboBox ItemsSource="{Binding ObjectTypeOptions}" SelectedItem="{Binding SelectedSqlServerObjectType}" SelectedValue="{Binding Path=SelectedSqlServerObjectType.TypeCode}" DisplayMemberPath="TypeDescription" SelectedValuePath="TypeCode" VerticalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <interactivity:InvokeCommandAction Command="{Binding RefreshObjectsCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <ComboBox ItemsSource="{Binding ObjectNameOptions}" SelectedItem="{Binding Path=SelectedObjectName}" SelectedValue="{Binding Path=SelectedObjectName}" VerticalAlignment="Center" />
+        </StackPanel>
+        <Button Grid.Row="2" Grid.Column="2" Command="{Binding SaveManualEntryCommand}" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Center" ></Button>
+    </Grid>
+</UserControl>
