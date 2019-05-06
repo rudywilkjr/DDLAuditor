@@ -7,16 +7,16 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using Core;
-using DataLibrary.DataModel.DTO;
-using DataLibrary.Repository;
-using DataTracker.Model;
-using DataTracker.Utility;
+using DataLayer.DTO;
+using DataLayer.Repository;
+using PresentationLayer.Model;
+using PresentationLayer.Utility;
 using LiveCharts;
 using LiveCharts.Helpers;
 using LiveCharts.Wpf;
-using DataTracker.Views;
+using PresentationLayer.Views;
 
-namespace DataTracker.ViewModel
+namespace PresentationLayer.ViewModel
 {
     public class HomeViewModel : INotifyPropertyChanged
     {

@@ -6,6 +6,7 @@ namespace Core
     public class User
     {
         public string DomainUserName { get; set; }
+        public string DatabaseUserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FirstLastName => FirstName + " " + LastName;
@@ -14,7 +15,7 @@ namespace Core
 
         public static readonly List<User> AllApplicationUsers = new List<User>
             {
-                new User { FirstName = "Rudy", LastName = "Wilkinson", DomainUserName = "rwilkinson" }
+                new User { FirstName = "Rudy", LastName = "Wilkinson", DomainUserName = "Rudy", DatabaseUserName = "rudywilkjr" }
             };
     }
 }

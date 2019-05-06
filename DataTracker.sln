@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{6808CDA5-A786-494D-AC09-4CDA05D401A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{ECD4D4C9-D3ED-4D57-9962-1126A8027BD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{2BEC6392-FAAD-4F38-9D68-2D3CCFF63757}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{C71A533B-17AB-4255-AAA5-E87D6AC47850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{4531A157-27CD-48D8-BBF7-DB9D65547592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,23 +31,19 @@ Global
 		{2BEC6392-FAAD-4F38-9D68-2D3CCFF63757}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BEC6392-FAAD-4F38-9D68-2D3CCFF63757}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BEC6392-FAAD-4F38-9D68-2D3CCFF63757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71A533B-17AB-4255-AAA5-E87D6AC47850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71A533B-17AB-4255-AAA5-E87D6AC47850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71A533B-17AB-4255-AAA5-E87D6AC47850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71A533B-17AB-4255-AAA5-E87D6AC47850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4531A157-27CD-48D8-BBF7-DB9D65547592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4531A157-27CD-48D8-BBF7-DB9D65547592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4531A157-27CD-48D8-BBF7-DB9D65547592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4531A157-27CD-48D8-BBF7-DB9D65547592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://s-sw-tfs1:8080/tfs/rogue
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Core\\Core.csproj
-		SccProjectName1 = Core
-		SccLocalPath1 = Core
-		SccProjectUniqueName2 = DataLibrary\\DataLibrary.csproj
-		SccProjectName2 = DataLibrary
-		SccLocalPath2 = DataLibrary
-		SccProjectUniqueName3 = Main\\Main.csproj
-		SccProjectName3 = Main
-		SccLocalPath3 = Main
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65FB1711-EFE7-4D06-9FAD-F568FB27CD89}
 	EndGlobalSection
 EndGlobal

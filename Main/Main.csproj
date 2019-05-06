@@ -82,14 +82,6 @@
     <ApplicationIcon>DataTrackerLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LiveCharts">
       <HintPath>..\packages\LiveCharts.0.7.14.3\lib\portable-net40+sl5+win8+wp8+wpa81\LiveCharts.dll</HintPath>
       <Private>True</Private>
@@ -349,9 +341,9 @@
       <Project>{2bec6392-faad-4f38-9d68-2d3ccff63757}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLibrary\DataLibrary.csproj">
-      <Project>{ecd4d4c9-d3ed-4d57-9962-1126a8027bd0}</Project>
-      <Name>DataLibrary</Name>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{c71a533b-17ab-4255-aaa5-e87d6ac47850}</Project>
+      <Name>DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

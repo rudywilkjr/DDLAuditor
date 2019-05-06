@@ -6,14 +6,14 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using Core.Helper;
-using DataLibrary.Repository;
-using DataTracker.Model;
-using DataTracker.Utility;
+using DataLayer.Repository;
+using PresentationLayer.Model;
+using PresentationLayer.Utility;
 using System.Collections.ObjectModel;
 using Core;
-using ProjectLabel = DataTracker.Model.ProjectLabel;
+using ProjectLabel = PresentationLayer.Model.ProjectLabel;
 
-namespace DataTracker.ViewModel
+namespace PresentationLayer.ViewModel
 {
     public class ManualEntryViewModel : INotifyPropertyChanged
     {

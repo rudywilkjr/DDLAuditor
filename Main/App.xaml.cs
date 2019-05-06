@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
-using DataTracker.Model;
+using PresentationLayer.Model;
 
-namespace DataTracker
+namespace PresentationLayer
 {
     /// <summary>
     /// Interaction logic for App.xaml

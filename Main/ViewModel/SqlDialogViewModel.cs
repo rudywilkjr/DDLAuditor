@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using DataLibrary.Repository;
+using DataLayer.Repository;
 
-namespace DataTracker.ViewModel
+namespace PresentationLayer.ViewModel
 {
     public class SqlDialogViewModel : INotifyPropertyChanged
     {

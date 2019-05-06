@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="PresentationLayerLogo.ico" />
+    <None Remove="Images\assign-icon.png" />
+    <None Remove="Images\bullet_blue_collapse.ico" />
+    <None Remove="Images\bullet_blue_expand.ico" />
+    <None Remove="Images\check-mark.png" />
+    <None Remove="Images\PresentationLayerLogo.bmp" />
+    <None Remove="Images\gear.png" />
+    <None Remove="Images\tfs.png" />
+    <None Remove="Images\trash-can.png" />
+    <None Remove="Images\white-flag.jpg" />
+    <None Remove="Views\LinkObjectWindow.xaml" />
+    <None Remove="Views\MainWindow.xaml" />
+    <None Remove="Views\SettingsWindow.xaml" />
+    <None Remove="Views\UserControls\AuditLogGrid.xaml" />
+    <None Remove="Views\UserControls\ClaimedGrid.xaml" />
+    <None Remove="Views\UserControls\ManualEntry.xaml" />
+    <None Remove="Views\UserControls\ScriptViewer.xaml" />
+    <None Remove="Views\UserControls\UnclaimedGrid.xaml" />
+    <None Remove="Views\ViewSqlWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Prism.Core" Version="7.1.0.431" />
+    <PackageReference Include="Prism.Wpf" Version="7.1.0.431" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="PresentationLayerLogo.ico" />
+    <Resource Include="Images\assign-icon.png" />
+    <Resource Include="Images\bullet_blue_collapse.ico" />
+    <Resource Include="Images\bullet_blue_expand.ico" />
+    <Resource Include="Images\check-mark.png" />
+    <Resource Include="Images\PresentationLayerLogo.bmp" />
+    <Resource Include="Images\gear.png" />
+    <Resource Include="Images\tfs.png" />
+    <Resource Include="Images\trash-can.png" />
+    <Resource Include="Images\white-flag.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\LinkObjectWindow.xaml.cs">
+      <DependentUpon>LinkObjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserControls\AuditLogGrid.xaml.cs">
+      <DependentUpon>AuditLogGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserControls\ClaimedGrid.xaml.cs">
+      <DependentUpon>ClaimedGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserControls\ManualEntry.xaml.cs">
+      <DependentUpon>ManualEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserControls\ScriptViewer.xaml.cs">
+      <DependentUpon>ScriptViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserControls\UnclaimedGrid.xaml.cs">
+      <DependentUpon>UnclaimedGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ViewSqlWindow.xaml.cs">
+      <DependentUpon>ViewSqlWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

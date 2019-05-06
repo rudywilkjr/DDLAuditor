@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataTracker.Utility
+namespace PresentationLayer.Utility
 {
     public class Logger
     {

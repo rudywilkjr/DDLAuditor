@@ -13,7 +13,7 @@ namespace Core
         {
             new Database
             {
-                DatabaseName = "SomeDb",
+                DatabaseName = "smbim",
                 Environment = "Dev",
                 ConnectionString =
                     @"connection-string"
